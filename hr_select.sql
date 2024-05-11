@@ -16,7 +16,7 @@ SELECT xmlelement (
                         d.department_name as "departmentName"
                     )
                 )
-            ) as "jobHistory"
+            ) as "jobHistories"
         )
     )
 FROM
