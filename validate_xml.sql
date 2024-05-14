@@ -38,20 +38,19 @@ BEGIN
 
     IF is_valid THEN
         -- Extraer datos del XML
-        SELECT
-            xpath('/employee/firstName/text()', xml_data::xml)::TEXT INTO fname,
-            xpath('/employee/lastName/text()', xml_data::xml)::TEXT INTO lname,
-            xpath('/employee/email/text()', xml_data::xml)::TEXT INTO email,
-            xpath('/employee/phoneNumber/text()', xml_data::xml)::TEXT INTO phone,
-            xpath('/employee/hireDate/text()', xml_data::xml)::TEXT::DATE INTO hire_date,
-            xpath('/employee/jobId/text()', xml_data::xml)::TEXT INTO job_id,
-            xpath('/employee/salary/text()', xml_data::xml)::TEXT::NUMERIC INTO salary,
-            xpath('/employee/commissionPct/text()', xml_data::xml)::TEXT::NUMERIC INTO commission,
-            xpath('/employee/managerId/text()', xml_data::xml)::TEXT::INTEGER INTO manager_id,
-            xpath('/employee/departmentId/text()', xml_data::xml)::TEXT::INTEGER INTO dept_id;
+        SELECT (xpath('/employee/firstName/text()', xml_data::xml))[1]::TEXT INTO fname;
+        SELECT (xpath('/employee/lastName/text()', xml_data::xml))[1]::TEXT INTO lname;
+        SELECT (xpath('/employee/email/text()', xml_data::xml))[1]::TEXT INTO email;
+        SELECT (xpath('/employee/phoneNumber/text()', xml_data::xml))[1]::TEXT INTO phone;
+        SELECT (xpath('/employee/hireDate/text()', xml_data::xml))[1]::TEXT::DATE INTO hire_date;
+        SELECT (xpath('/employee/jobId/text()', xml_data::xml))[1]::TEXT INTO job_id;
+        SELECT (xpath('/employee/salary/text()', xml_data::xml))[1]::TEXT::NUMERIC INTO salary;
+        SELECT (xpath('/employee/commissionPct/text()', xml_data::xml))[1]::TEXT::NUMERIC INTO commission;
+        SELECT (xpath('/employee/managerId/text()', xml_data::xml))[1]::TEXT::INTEGER INTO manager_id;
+        SELECT (xpath('/employee/departmentId/text()', xml_data::xml))[1]::TEXT::INTEGER INTO dept_id;
 
         -- Insertar datos en la tabla employees
-        INSERT INTO hr.employees (
+        INSERT INTO employees (
             first_name, last_name, email, phone_number,
             hire_date, job_id, salary, commission_pct, manager_id, department_id
         ) VALUES (
