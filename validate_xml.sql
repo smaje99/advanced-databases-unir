@@ -3,19 +3,18 @@ CREATE EXTENSION plpython3u;
 CREATE OR REPLACE FUNCTION validate_xml_against_xsd(xml_content TEXT, xsd_content TEXT) RETURNS BOOLEAN AS $$
 import lxml.etree as ET
 
-def validate_xml_against_xsd(xml_content, xsd_content):
-    try:
-        # Parse the XML and XSD content
-        xml_doc = ET.fromstring(xml_content)
-        xsd_doc = ET.fromstring(xsd_content)
-        xmlschema = ET.XMLSchema(xsd_doc)
+try:
+    # Parse the XML and XSD content
+    xml_doc = ET.fromstring(xml_content)
+    xsd_doc = ET.fromstring(xsd_content)
+    xmlschema = ET.XMLSchema(xsd_doc)
 
-        # Validate the XML
-        xmlschema.assertValid(xml_doc)
-        return True
-    except ET.DocumentInvalid as e:
-        plpy.error(str(e))
-        return False
+    # Validate the XML
+    xmlschema.assertValid(xml_doc)
+    return True
+except ET.DocumentInvalid as e:
+    plpy.error(str(e))
+    return False
 $$ LANGUAGE plpython3u;
 
 
