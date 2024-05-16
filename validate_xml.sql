@@ -73,10 +73,10 @@ BEGIN
             <email>johndoe@example.com</email>
             <phoneNumber>555-1234</phoneNumber>
             <hireDate>2023-06-01</hireDate>
-            <jobId>DEV</jobId>
+            <jobId>AD_PRES</jobId>
             <salary>60000.00</salary>
             <commissionPct>0.10</commissionPct>
-            <managerId>2</managerId>
+            <managerId>201</managerId>
             <departmentId>10</departmentId>
         </employee>',
         '<?xml version="1.0"?>
